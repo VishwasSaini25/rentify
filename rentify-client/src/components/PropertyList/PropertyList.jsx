@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { getRoleFromToken } from '../../utils/auth';
 import "./PropertyList.css";
 import { useNavigate } from 'react-router-dom';
 import { FcLike } from "react-icons/fc";
 import Nav from '../nav/Nav';
+import { instance } from '../../utils/axios';
 const PropertyList = () => {
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
@@ -22,7 +22,7 @@ const PropertyList = () => {
     const role = getRoleFromToken();
     useEffect(() => {
         const fetchProperties = async () => {
-            const response = await axios.get('http://localhost:5000/api/properties');
+            const response = await instance.get('/api/properties');
             setProperties(response.data);
             setFilteredProperties(response.data);
         };
@@ -44,7 +44,7 @@ const PropertyList = () => {
             return;
         }
         try {
-            const response = await axios.post(`http://localhost:5000/api/properties/${id}/interested`, {}, {
+            const response = await instance.post(`/api/properties/${id}/interested`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setSellerDetails(response.data.seller);
@@ -84,7 +84,7 @@ const PropertyList = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5000/api/properties/${id}/like`, {}, {
+            const response = await instance.post(`/api/properties/${id}/like`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setProperties(properties.map(property =>

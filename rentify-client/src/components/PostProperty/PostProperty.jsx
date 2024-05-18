@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {getRoleFromToken} from '../../utils/auth';
 import Nav from '../nav/Nav';
+import { instance } from '../../utils/axios';
+
 const PostProperty = () => {
     const [form, setForm] = useState({
         place: '',
@@ -28,7 +29,7 @@ const PostProperty = () => {
         }
         const token = localStorage.getItem('token');
         try {
-            await axios.post('http://localhost:5000/api/properties', form, {
+            await insatnce.post('/api/properties', form, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             alert('Property posted successfully');

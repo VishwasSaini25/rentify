@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import "./MyProperties.css";
 import Nav from "../nav/Nav";
 import { useNavigate } from 'react-router-dom';
+import { instance } from '../../utils/axios';
+
 const MyProperties = () => {
     const [properties, setProperties] = useState([]);
     const [editing, setEditing] = useState(null);
@@ -24,7 +25,7 @@ const MyProperties = () => {
                 return;
             }
 
-            const response = await axios.get('http://localhost:5000/api/properties/my', {
+            const response = await instance.get('/api/properties/my', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setProperties(response.data);
@@ -36,7 +37,7 @@ const MyProperties = () => {
     const handleDelete = async (id) => {
         const token = localStorage.getItem('token');
         try {
-            await axios.delete(`http://localhost:5000/api/properties/${id}`, {
+            await instance.delete(`/api/properties/${id}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setProperties(properties.filter(property => property._id !== id));
@@ -64,7 +65,7 @@ const MyProperties = () => {
     const handleUpdate = async (id) => {
         const token = localStorage.getItem('token');
         try {
-            await axios.put(`http://localhost:5000/api/properties/${id}`, form, {
+            await instance.put(`/api/properties/${id}`, form, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setProperties(properties.map(property => property._id === id ? { ...property, ...form } : property));

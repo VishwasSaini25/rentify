@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import "./Login.css";
 import { useNavigate,useLocation } from 'react-router-dom';
-
+import { instance } from "../../utils/axios";
 const Login = () => {
     const location = useLocation();
     const role = location.state;
@@ -18,7 +17,7 @@ const Login = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', form);
+            const response = await instance.post('/api/auth/login', form);
             localStorage.setItem('token', response.data.token);
             document.cookie = `token=${response.data.token}`;
             alert('User logged in successfully');
