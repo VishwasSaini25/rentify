@@ -1,0 +1,34 @@
+.property-list{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px
+    
+}
+.property-list-detail{
+    border: 1px solid black;
+    padding: 2%;
+    margin: 2%;
+    font-size: 20px;
+    height: fit-content;
+}
+.property-list-detail h3,p{
+    padding-bottom: 1%;
+}
+.property-list-detail button{
+    height: 50px;
+    margin-bottom: 2%;
+}
+.filter-input{
+    display: flex;
+}
+.filter-input input{
+    margin: 1%;
+}
+.filters button{
+    width: 98%;
+    margin: auto;
+}
+.filters{
+    text-align: center;
+    font-size: 22px;
+}

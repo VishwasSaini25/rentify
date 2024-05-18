@@ -1,0 +1,15 @@
+.nav{
+    width: 100%;
+    margin-top: 1%;
+    padding: .5%;
+}
+.nav-logout,.nav-data{
+    font-size: 22px;
+    margin-right: 1%;
+    float: right;
+}
+.nav-data{
+    float: left;
+    margin-left: .9%;
+    cursor: pointer;
+}

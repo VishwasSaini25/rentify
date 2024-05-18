@@ -1,0 +1,19 @@
+.my-properties{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px
+    
+}
+.my-property-details{
+    border: 1px solid black;
+    padding: 2%;
+    margin: 2%;
+    font-size: 20px;
+}
+.my-property-details h3,p{
+    padding-bottom: 1%;
+}
+.my-property-details button{
+    height: 50px;
+    margin-bottom: 2%;
+}
