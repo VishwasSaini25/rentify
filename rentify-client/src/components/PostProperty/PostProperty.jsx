@@ -29,7 +29,7 @@ const PostProperty = () => {
         }
         const token = localStorage.getItem('token');
         try {
-            await insatnce.post('/api/properties', form, {
+            await instance.post('/api/properties', form, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             alert('Property posted successfully');
